@@ -35,6 +35,15 @@ namespace mapviz_plugins
 {
 struct MarkerData
 {
+  int tmp;
+};
+
+struct NamespaceData
+{
+  std::string name;
+  bool visible;
+  
+  std::map<int, MarkerData> markers;
 };  // struct MarkerData
 
 class MarkerListModel : public QAbstractListModel
@@ -48,15 +57,17 @@ class MarkerListModel : public QAbstractListModel
   // Interface for QAbstractListModel, used by Qt components to access data.
   int rowCount(const QModelIndex &index=QModelIndex()) const;
   QVariant data(const QModelIndex &index, int role=Qt::DisplayRole) const;
+  bool setData(const QModelIndex &index, const QVariant &value, int role=Qt::EditRole);
+  Qt::ItemFlags flags(const QModelIndex &index) const;
+  Qt::DropActions supportedDropActions() const;
 
-  // Interface for plugin to acess data.
+  // Interface for plugin to access data.
   void addMarker(const visualization_msgs::Marker &marker);
   void visibleMarkers(std::vector<MarkerData const *> &markers);  
 
  private:
+  std::vector<NamespaceData> namespaces_;
 
-  void timerEvent(QTimerEvent *event);
-  bool direction_;
-  std::vector<std::string> tmp_;
+  int findNamespace(const std::string &name);  
 };  // class MarkerListModel
 }  // namespcae mapviz_plugins

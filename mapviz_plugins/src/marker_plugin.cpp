@@ -45,7 +45,6 @@
 #include <ros/master.h>
 
 #include <mapviz/select_topic_dialog.h>
-#include "marker_list_model.h"
 
 #include <swri_math_util/constants.h>
 
@@ -156,6 +155,8 @@ namespace mapviz_plugins
 
   void MarkerPlugin::handleMarker(const visualization_msgs::Marker &marker)
   {
+    model_->addMarker(marker);
+    
     if (marker.type == visualization_msgs::Marker::ARROW &&
         marker.points.size() == 1)
     {

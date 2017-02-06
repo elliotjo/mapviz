@@ -117,6 +117,7 @@ set(HEADER_FILES
     include/${PROJECT_NAME}/placeable_window_proxy.h
     include/${PROJECT_NAME}/laserscan_plugin.h
     include/${PROJECT_NAME}/marker_plugin.h
+    include/${PROJECT_NAME}/marker_list_model.h
     include/${PROJECT_NAME}/navsat_plugin.h
     include/${PROJECT_NAME}/odometry_plugin.h
     include/${PROJECT_NAME}/path_plugin.h
@@ -130,7 +131,6 @@ set(HEADER_FILES
     include/${PROJECT_NAME}/textured_marker_plugin.h
     include/${PROJECT_NAME}/tf_frame_plugin.h
     include/${PROJECT_NAME}/point_drawing_plugin.h
-    src/marker_list_model.h
 )
     
 qt4_wrap_ui(UI_SRC_FILES ${UI_FILES})

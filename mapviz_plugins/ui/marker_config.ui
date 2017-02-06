@@ -68,11 +68,23 @@
    </item>
    <item>
     <widget class="mapviz_plugins::ShrinkingListView" name="marker_list_view">
+     <property name="acceptDrops">
+      <bool>true</bool>
+     </property>
      <property name="frameShape">
       <enum>QFrame::Box</enum>
      </property>
      <property name="frameShadow">
       <enum>QFrame::Plain</enum>
+     </property>
+     <property name="dragEnabled">
+      <bool>true</bool>
+     </property>
+     <property name="dragDropMode">
+      <enum>QAbstractItemView::InternalMove</enum>
+     </property>
+     <property name="defaultDropAction">
+      <enum>Qt::MoveAction</enum>
      </property>
     </widget>
    </item>
