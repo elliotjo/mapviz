@@ -87,6 +87,7 @@ set(SRC_FILES
     src/grid_plugin.cpp
     src/image_plugin.cpp
     src/laserscan_plugin.cpp
+    src/marker_list_model.cpp
     src/marker_plugin.cpp 
     src/navsat_plugin.cpp
     src/odometry_plugin.cpp 
@@ -101,6 +102,7 @@ set(SRC_FILES
     src/string_plugin.cpp
     src/textured_marker_plugin.cpp
     src/tf_frame_plugin.cpp
+    src/shrinking_list_view.cpp
 )
 
 set(HEADER_FILES
@@ -123,10 +125,12 @@ set(HEADER_FILES
     include/${PROJECT_NAME}/pointcloud2_plugin.h
     include/${PROJECT_NAME}/robot_image_plugin.h
     include/${PROJECT_NAME}/route_plugin.h
+    include/${PROJECT_NAME}/shrinking_list_view.h
     include/${PROJECT_NAME}/string_plugin.h
     include/${PROJECT_NAME}/textured_marker_plugin.h
     include/${PROJECT_NAME}/tf_frame_plugin.h
     include/${PROJECT_NAME}/point_drawing_plugin.h
+    src/marker_list_model.h
 )
     
 qt4_wrap_ui(UI_SRC_FILES ${UI_FILES})

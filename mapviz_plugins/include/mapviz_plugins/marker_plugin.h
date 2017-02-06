@@ -59,6 +59,7 @@
 
 namespace mapviz_plugins
 {
+  class MarkerListModel;
   class MarkerPlugin : public mapviz::MapvizPlugin
   {
     Q_OBJECT
@@ -94,6 +95,7 @@ namespace mapviz_plugins
   protected Q_SLOTS:
     void SelectTopic();
     void TopicEdited();
+    void ListSizeChanged();
 
   private:
     struct StampedPoint
@@ -134,6 +136,7 @@ namespace mapviz_plugins
 
     Ui::marker_config ui_;
     QWidget* config_widget_;
+    MarkerListModel *model_;
 
     std::string topic_;
 

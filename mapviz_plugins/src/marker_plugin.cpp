@@ -45,6 +45,7 @@
 #include <ros/master.h>
 
 #include <mapviz/select_topic_dialog.h>
+#include "marker_list_model.h"
 
 #include <swri_math_util/constants.h>
 
@@ -63,10 +64,12 @@ namespace mapviz_plugins
 
   MarkerPlugin::MarkerPlugin() :
     config_widget_(new QWidget()),
+    model_(new MarkerListModel()),
     connected_(false)
   {
     ui_.setupUi(config_widget_);
-
+    ui_.marker_list_view->setModel(model_);
+      
     // Set background white
     QPalette p(config_widget_->palette());
     p.setColor(QPalette::Background, Qt::white);
@@ -79,6 +82,7 @@ namespace mapviz_plugins
 
     QObject::connect(ui_.selecttopic, SIGNAL(clicked()), this, SLOT(SelectTopic()));
     QObject::connect(ui_.topic, SIGNAL(editingFinished()), this, SLOT(TopicEdited()));
+    QObject::connect(ui_.marker_list_view, SIGNAL(sizeChanged()), this, SLOT(ListSizeChanged()));
 
     startTimer(1000);
   }
@@ -124,6 +128,13 @@ namespace mapviz_plugins
         ROS_INFO("Subscribing to %s", topic_.c_str());
       }
     }
+  }
+
+  void MarkerPlugin::ListSizeChanged()
+  {
+    config_widget_->updateGeometry();
+    config_widget_->adjustSize();
+    Q_EMIT SizeChanged();
   }
 
   void MarkerPlugin::handleMessage(const topic_tools::ShapeShifter::ConstPtr& msg)
